@@ -1,0 +1,29 @@
+<h1>学生名单</h1>
+
+<p><%= link_to "新建学生", new_student_path %></p>
+
+<table border="1" cellpadding="5">
+  <tr>
+    <th>ID</th>
+    <th>姓名</th>
+    <th>年龄</th>
+    <th>专业</th>
+    <th>平均分</th>
+    <th>操作</th>
+  </tr>
+  <% @students.each do |student| %>
+    <tr>
+      <td><%= student.id %></td>
+      <td><%= student.name %></td>
+      <td><%= student.age %></td>
+      <td><%= student.major %></td>
+      <td><%= student.average_score %></td>
+      <td>
+        <%= link_to "查看", student %> |
+        <%= link_to "选课", new_student_enrollment_path(student) %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "课程管理", courses_path %> | <%= link_to "选课记录", enrollments_path %></p>

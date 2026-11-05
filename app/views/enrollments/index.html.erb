@@ -1,0 +1,20 @@
+<h1>选课记录</h1>
+
+<table border="1" cellpadding="5">
+  <tr>
+    <th>学生</th>
+    <th>课程</th>
+    <th>成绩</th>
+    <th>操作</th>
+  </tr>
+  <% @enrollments.each do |enrollment| %>
+    <tr>
+      <td><%= enrollment.student.name %></td>
+      <td><%= enrollment.course.name %></td>
+      <td><%= enrollment.score || "未打分" %></td>
+      <td><%= button_to "退课", enrollment, method: :delete, data: { confirm: "确定退课？" } %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "学生管理", students_path %> | <%= link_to "课程管理", courses_path %></p>

@@ -1,0 +1,27 @@
+<h1>课程名单</h1>
+
+<p><%= link_to "新建课程", new_course_path %></p>
+
+<table border="1" cellpadding="5">
+  <tr>
+    <th>ID</th>
+    <th>课程名</th>
+    <th>学分</th>
+    <th>选课人数</th>
+    <th>操作</th>
+  </tr>
+  <% @courses.each do |course| %>
+    <tr>
+      <td><%= course.id %></td>
+      <td><%= course.name %></td>
+      <td><%= course.credit %></td>
+      <td><%= course.students.count %></td>
+      <td>
+        <%= link_to "查看", course %> |
+        <%= link_to "选课", new_course_enrollment_path(course) %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "学生管理", students_path %> | <%= link_to "选课记录", enrollments_path %></p>

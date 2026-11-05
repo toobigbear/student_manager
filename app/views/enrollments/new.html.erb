@@ -1,0 +1,35 @@
+<h1>新建选课</h1>
+
+<%= form_with model: @enrollment do |form| %>
+  <% if @enrollment.errors.any? %>
+    <div style="color: red;">
+      <h2><%= pluralize(@enrollment.errors.count, "个错误") %>：</h2>
+      <ul>
+        <% @enrollment.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :student_id, "学生" %>
+    <%= form.collection_select :student_id, Student.all, :id, :name, prompt: "请选择学生" %>
+  </div>
+
+  <div>
+    <%= form.label :course_id, "课程" %>
+    <%= form.collection_select :course_id, Course.all, :id, :name, prompt: "请选择课程" %>
+  </div>
+
+  <div>
+    <%= form.label :score, "成绩" %>
+    <%= form.number_field :score, min: 0, max: 100 %>
+  </div>
+
+  <div>
+    <%= form.submit "选课" %>
+  </div>
+<% end %>
+
+<%= link_to "返回", enrollments_path %>
